@@ -28,15 +28,13 @@ export default {
 main {
     width: 100%;
     display: flex;
-    background-color: var(--bg-main);
+    background-color: var(--color-primary-opacity);
     padding: 20px 40px;
     height: 100%;
 }
 
 section {
     width: 100%;
-    min-height: calc(
-        100vh - var(--height-header) - var(--height-footer) - 20px
-    );
+    min-height: calc(100vh - var(--height-header) - var(--height-footer) - 20px);
 }
 </style>

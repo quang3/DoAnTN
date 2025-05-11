@@ -29,7 +29,7 @@ onMounted(async () => {
 #sidebar {
     width: var(--width-sidebar);
     height: 100%;
-    background-color: var(--color-white);
+    background-color: var(--color-primary);
     overflow-y: auto;
     border-radius: var(--border-radius-page);
     padding: 10px 10px;
@@ -38,6 +38,7 @@ onMounted(async () => {
 #sidebar .sidebar-title {
     padding: 10px;
     padding-bottom: 15px;
+    color: var(--color-white);
 }
 
 #sidebar a {
@@ -45,17 +46,17 @@ onMounted(async () => {
     padding-left: 15px;
     display: block;
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-white);
     font-size: 1.1rem;
     border-radius: var(--border-radius-page);
 }
 
 #sidebar a:hover {
-    background-color: var(--color-greyish);
+    background-color: var(--color-primary-hover);
 }
 
 #sidebar a.router-link-exact-active {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-focus);
     color: var(--color-white);
 }
 </style>

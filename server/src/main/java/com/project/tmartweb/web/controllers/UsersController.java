@@ -29,10 +29,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UsersController {
     private final IUserService userService;
+    private final GenerateValue generateValue;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDTO) {
-        userDTO.setUserName(GenerateValue.generateUsername());
+        userDTO.setUserName(generateValue.generateUsername(userDTO.getEmail()));
         userDTO.setRoleId(RoleId.USER);
         var res = userService.insert(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(res);

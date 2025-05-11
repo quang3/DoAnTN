@@ -1,13 +1,13 @@
 <script lang="js" setup>
 
 import { useAuthStore } from '@/stores/auth';
-import router from '@/routers/router';
+import { useRoute } from 'vue-router';
 
 const authStore = useAuthStore();
+const route = useRoute();
 
 const handleLogout = () => {
-    authStore.fetchLogout();
-    router.push({ name: 'Login' });
+    authStore.fetchLogout(route);
 }
 </script>
 
@@ -17,8 +17,7 @@ const handleLogout = () => {
             <div class="sidebar-content">
                 <div class="logo">
                     <router-link :to="{ name: 'HomePage' }">
-                        <span class="t">T</span>
-                        <span class="mart">Mart</span>
+                        <span class="logo-name">QPRO</span>
                     </router-link>
                 </div>
                 <ul>
@@ -83,6 +82,7 @@ const handleLogout = () => {
 .admin-page {
     height: 100%;
 }
+
 .admin-page .sidebar {
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@ const handleLogout = () => {
     padding-bottom: 5px;
 }
 
-.admin-page .sidebar .logo > a {
+.admin-page .sidebar .logo>a {
     display: block;
     text-align: center;
     font-size: 2rem;
@@ -104,12 +104,7 @@ const handleLogout = () => {
     padding: 5px 0;
 }
 
-.admin-page .sidebar .logo > a > .t {
-    color: var(--color-orange);
-    font-size: 2rem;
-}
-
-.admin-page .sidebar .logo > a > .mart {
+.admin-page .sidebar .logo>a>.logo-name {
     color: var(--color-white);
     font-size: 2rem;
     font-style: italic;
@@ -135,7 +130,7 @@ const handleLogout = () => {
     list-style: none;
 }
 
-.admin-page .sidebar ul li > a {
+.admin-page .sidebar ul li>a {
     color: var(--color-white);
     padding: 20px;
     text-decoration: none;
@@ -145,11 +140,11 @@ const handleLogout = () => {
     gap: 10px;
 }
 
-.admin-page .sidebar ul li > a:hover {
+.admin-page .sidebar ul li>a:hover {
     background-color: var(--color-primary-hover);
 }
 
-.admin-page .sidebar ul li > a.router-link-exact-active {
+.admin-page .sidebar ul li>a.router-link-exact-active {
     background-color: var(--color-primary-focus);
 }
 

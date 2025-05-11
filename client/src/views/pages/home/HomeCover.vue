@@ -5,13 +5,10 @@
         </div>
         <b-carousel :autoplay="4000" :navigator="false" :pagination="false">
             <V-Slide v-for="slide in galleryList" :key="slide">
-                <RouterLink
-                    class="carousel__item"
-                    :to="{
-                        name: 'DetailProduct',
-                        params: { id: slide?.product?.id },
-                    }"
-                >
+                <RouterLink class="carousel__item" :to="{
+                    name: 'DetailProduct',
+                    params: { id: slide?.product?.id },
+                }">
                     <img :src="slide?.image" alt="" />
                 </RouterLink>
             </V-Slide>

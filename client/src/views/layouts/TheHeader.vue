@@ -1,78 +1,48 @@
 <template>
     <header id="header">
         <div class="logo">
-            <router-link :to="{ name: 'HomePage' }"
-                ><span>T</span>Mart</router-link
-            >
+            <router-link :to="{ name: 'HomePage' }">QPRO</router-link>
         </div>
         <div class="search-box">
             <div class="search-box-item">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <b-input
-                    ref="refInputSearch"
-                    @keydown.enter="handleSearch()"
-                    v-model:modelValue="searchValue"
-                    placeholder="Tìm kiếm..."
-                />
+                <b-input ref="refInputSearch" @keydown.enter="handleSearch()" v-model:modelValue="searchValue"
+                    placeholder="Tìm kiếm..." />
                 <b-button @click="handleSearch()" value="Tìm kiếm" />
             </div>
         </div>
         <div class="redirect">
             <div class="redirect__home">
-                <b-button
-                    @click="handleRedirectHome"
-                    icon="fa-solid fa-house"
-                    value="Trang chủ"
-                />
+                <b-button @click="handleRedirectHome" icon="fa-solid fa-house" value="Trang chủ" />
             </div>
             <div class="redirect__account">
                 <div class="account-notify">
                     <router-link :to="{ name: 'NotifyPage' }">
                         <i class="fa-solid fa-bell"></i>
                         Thông báo
-                        <span
-                            v-if="notificationListNoRead.length > 0"
-                            class="quantity-notify"
-                            >{{ notificationListNoRead.length }}</span
-                        >
+                        <span v-if="notificationListNoRead.length > 0" class="quantity-notify">{{
+                            notificationListNoRead.length }}</span>
                     </router-link>
                 </div>
-                <div
-                    @click="handleClickAccount"
-                    class="account-tile"
-                    @mouseover="isShowAccOption = true"
-                    @mouseleave="isShowAccOption = false"
-                >
+                <div @click="handleClickAccount" class="account-tile" @mouseover="isShowAccOption = true"
+                    @mouseleave="isShowAccOption = false">
                     <span>{{
                         authStore.isLoggedIn ? `Tài khoản` : "Đăng nhập"
-                    }}</span>
+                        }}</span>
                 </div>
-                <div
-                    v-if="authStore.isLoggedIn"
-                    @mouseover="isShowAccOption = true"
-                    @mouseleave="isShowAccOption = false"
-                    v-show="isShowAccOption"
-                    class="account-box"
-                >
+                <div v-if="authStore.isLoggedIn" @mouseover="isShowAccOption = true"
+                    @mouseleave="isShowAccOption = false" v-show="isShowAccOption" class="account-box">
                     <div class="account-router-link" v-if="isAdmin">
-                        <router-link :to="{ name: 'HomeAdmin' }"
-                            >Hệ thống quản trị</router-link
-                        >
+                        <router-link :to="{ name: 'HomeAdmin' }">Hệ thống quản trị</router-link>
                     </div>
                     <div class="account-router-link">
-                        <router-link :to="{ name: 'AccountPage' }"
-                            >Thông tin tài khoản</router-link
-                        >
+                        <router-link :to="{ name: 'AccountPage' }">Thông tin tài khoản</router-link>
                     </div>
                     <div class="account-router-link">
-                        <router-link :to="{ name: 'ChangePassword' }"
-                            >Đổi mật khẩu</router-link
-                        >
+                        <router-link :to="{ name: 'ChangePassword' }">Đổi mật khẩu</router-link>
                     </div>
                     <div class="account-router-link">
-                        <router-link :to="{ name: 'OrdersPage' }"
-                            >Đơn hàng</router-link
-                        >
+                        <router-link :to="{ name: 'OrdersPage' }">Đơn hàng</router-link>
                     </div>
                     <div class="account-router-link">
                         <button @click="handleLogout">Đăng xuất</button>
@@ -82,16 +52,9 @@
         </div>
         <div class="cart">
             <div class="cart-item">
-                <b-button
-                    @click="handleRedirectCart"
-                    icon="fa-solid fa-cart-shopping"
-                >
-                    <span
-                        v-if="cartStore.cartByUser?.data?.length > 0"
-                        class="quantity-notify"
-                    >
-                        {{ cartStore.cartByUser?.data?.length }}</span
-                    >
+                <b-button @click="handleRedirectCart" icon="fa-solid fa-cart-shopping">
+                    <span v-if="cartStore.cartByUser?.data?.length > 0" class="quantity-notify">
+                        {{ cartStore.cartByUser?.data?.length }}</span>
                 </b-button>
             </div>
         </div>
@@ -163,7 +126,7 @@ export default {
             }
         },
         handleLogout() {
-            this.authStore.fetchLogout();
+            this.authStore.fetchLogout(this.$route);
         },
     },
     async created() {
@@ -198,7 +161,7 @@ export default {
             }
         });
     },
-    updated() {},
+    updated() { },
 };
 </script>
 
@@ -221,8 +184,8 @@ export default {
     width: 10%;
 }
 
-#header .logo > a,
-#header .logo > a > span {
+#header .logo>a,
+#header .logo>a>span {
     font-family: cursive;
     font-size: 3rem;
     color: var(--color-primary);
@@ -231,15 +194,16 @@ export default {
     font-weight: 600;
 }
 
-#header .logo > a > span {
+#header .logo>a>span {
     color: var(--color-orange);
 }
 
 #header .search-box {
     display: flex;
-    width: 62%;
+    width: 55%;
     justify-content: center;
     align-items: center;
+    margin-left: 50px;
 }
 
 #header .search-box .search-box-item {
@@ -250,19 +214,19 @@ export default {
     align-items: center;
 }
 
-#header .search-box .search-box-item > i {
+#header .search-box .search-box-item>i {
     text-align: center;
     font-size: 1.2rem;
     color: var(--color-greyish);
     width: 5%;
 }
 
-#header .search-box .search-box-item > input {
+#header .search-box .search-box-item>input {
     border: none;
     width: 80%;
 }
 
-#header .search-box .search-box-item > button {
+#header .search-box .search-box-item>button {
     width: 20%;
     background-color: transparent;
     color: var(--color-primary);
@@ -272,7 +236,7 @@ export default {
     position: relative;
 }
 
-#header .search-box .search-box-item > button::after {
+#header .search-box .search-box-item>button::after {
     content: "";
     position: absolute;
     left: -1px;
@@ -281,10 +245,10 @@ export default {
     background-color: var(--color-border);
 }
 
-#header .search-box .search-box-item > button:hover,
-#header .cart .cart-item > button:hover,
-#header .redirect .redirect__home > button:hover,
-#header .redirect .redirect__account > .account-tile:hover {
+#header .search-box .search-box-item>button:hover,
+#header .cart .cart-item>button:hover,
+#header .redirect .redirect__home>button:hover,
+#header .redirect .redirect__account>.account-tile:hover {
     background-color: var(--color-primary-opacity);
 }
 
@@ -333,7 +297,7 @@ export default {
     background-color: var(--color-primary-opacity);
 }
 
-.redirect .redirect__account .account-notify > a {
+.redirect .redirect__account .account-notify>a {
     text-decoration: none;
     color: var(--color-text);
     font-weight: 500;
@@ -346,7 +310,7 @@ export default {
     position: relative;
 }
 
-.redirect .redirect__account .account-notify > a > i {
+.redirect .redirect__account .account-notify>a>i {
     font-size: 15px;
     margin-right: 5px;
 }
@@ -358,7 +322,7 @@ export default {
     font-weight: 500;
 }
 
-.redirect .redirect__account .account-tile > img {
+.redirect .redirect__account .account-tile>img {
     object-fit: cover;
     width: 25px;
     border-radius: 50%;
@@ -385,7 +349,7 @@ export default {
     background-color: var(--color-primary-opacity);
 }
 
-.redirect .redirect__account .account-box .account-router-link > a {
+.redirect .redirect__account .account-box .account-router-link>a {
     text-decoration: none;
     color: var(--color-text);
     display: block;
@@ -400,7 +364,7 @@ export default {
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
-.redirect .redirect__account .account-box .account-router-link > button {
+.redirect .redirect__account .account-box .account-router-link>button {
     color: var(--color-text);
     border: none;
     padding: 10px;
@@ -432,7 +396,7 @@ export default {
     transform: translateY(-50%);
 }
 
-#header .cart .cart-item > button {
+#header .cart .cart-item>button {
     background-color: transparent;
     color: var(--color-primary);
 }
