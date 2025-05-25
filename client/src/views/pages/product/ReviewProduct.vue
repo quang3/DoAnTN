@@ -235,6 +235,7 @@ const handleFilter = async (value) => {
 .review-body .review-content .review-item .reviewer-avt>img {
     object-fit: cover;
     width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
